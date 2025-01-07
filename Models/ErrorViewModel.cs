@@ -1,4 +1,4 @@
-namespace MvcSupabaseDb.Models;
+namespace CappypopMVC.Models;
 
 public class ErrorViewModel
 {

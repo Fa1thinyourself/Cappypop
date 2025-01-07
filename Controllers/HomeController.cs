@@ -1,11 +1,11 @@
 using System.Diagnostics;
 using System.Reflection;
+using CappypopMVC.Models.DatabaseModels;
 using Microsoft.AspNetCore.Mvc;
-using MvcSupabaseDb.Models;
-using MvcSupabaseDb.Models.DatabaseModels;
+using CappypopMVC.Models;
 using Supabase;
 
-namespace MvcSupabaseDb.Controllers;
+namespace CappypopMVC.Controllers;
 
 public class HomeController : Controller
 {
@@ -23,7 +23,8 @@ public class HomeController : Controller
         var response = await supabase.From<Users>().Get();
         List<Users> users = response.Models;
 
-        users.ForEach(user => {
+        users.ForEach(user =>
+        {
             PropertyInfo[] p = user.GetType().GetProperties();
             foreach (PropertyInfo item in p)
             {
