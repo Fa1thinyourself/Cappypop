@@ -14,7 +14,7 @@
 	<title>CappyPop - Boba</title>
 
 	<!-- Favicon -->
-	<link rel="icon" href="img/favicon.png">
+	<link rel="icon" href="/img/favicon.png">
 
 	<!-- Google Fonts -->
 	<link
@@ -23,7 +23,6 @@
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<!-- Nice Select CSS -->
 	<link rel="stylesheet" href="/css/nice-select.css">
 	<!-- Font Awesome CSS -->
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -45,6 +44,8 @@
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/responsive.css">
 	<link rel="stylesheet" href="/css/bobacard.css">
+	<link rel="stylesheet" href="/css/view-bobadetail.css">
+	<link rel="stylesheet" href="/css/user.css">
 
 </head>
 
@@ -60,7 +61,7 @@
 						<div class="col-lg-2 col-md-2 col-12">
 							<!-- Start Logo -->
 							<div class="logo">
-								<a href="index.html"><img src="img/logo.png" alt="logo" width="200" height="60"></a>
+								<a asp-area="" asp-controller="Home" asp-action="Index"> <img src="/img/logo.png" alt="logo" width="200" height="60"></a>
 							</div>
 							<!-- End Logo -->
 							<!-- Mobile Nav -->
@@ -72,23 +73,36 @@
 							<div class="main-menu">
 								<nav class="navigation">
 									<ul class="nav menu">
-										<li><a href="index.html">Home</a></li>
+										<li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+										</li>
 
-										<li class="active"><a href="boba.html">Boba</a></li>
+										<li> <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Boba</a></li>
 
 										<li>
 											<a href="#">Cappy's Life<i class="icofont-rounded-down"></i></a>
 											<ul class="dropdown">
-												<li><a href="404.html">Newest Updates</a></li>
-												<li><a href="404.html">Recipes</a></li>
-												<li><a href="404.html">Blogs & Articles</a></li>
-												<li><a href="404.html">Special events & Holidays</a></li>
+												<li>
+													<a class="nav-link text-dark" asp-area="" asp-controller="CappyLife" asp-action="Index">
+														Newest
+														update</a></li>
+												<li> <a class="nav-link text-dark" asp-area="" asp-controller="CappyLife" asp-action="Index">recipes</a></li>
+
+												<li>
+													<a class="nav-link text-dark" asp-area="" asp-controller="CappyLife" asp-action="Index">
+														Blogs &
+														Articles</a></li>
+												<li>
+													<a class="nav-link text-dark" asp-area="" asp-controller="CappyLife" asp-action="Index">
+														Special
+														events & Holidays</a></li>
 											</ul>
 										</li>
 
-										<li><a href="help-support.html">Help & Supports</a></li>
+										<li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Helpsupport">Help &
+												Support</a></li>
 
-										<li><a href="aboutus.html">About Us</a></li>
+										<li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Aboutus">About
+												us</a></li>
 									</ul>
 								</nav>
 
@@ -111,11 +125,12 @@
 										</div>
 
 										<div class="get-quote">
-											<a href="admin-dashbroad.html" class="btn"><i class="icofont-user-alt-5"></i></a>
+											<a asp-area="" asp-controller="User" asp-action="Index" class="btn"><i class="icofont-user-alt-5"></i>
+											</a>
 										</div>
 
 										<div class="get-quote">
-											<a href="user-mycart.html" class="btn"><i class="icofont-shopping-cart"></i></a>
+											<a asp-area="" asp-controller="Cart" asp-action="Index" class="btn"><i class="icofont-shopping-cart"></i></a>
 										</div>
 									</ul>
 								</nav>
@@ -147,7 +162,10 @@
 
 								<div class="col-lg-6 col-md-6 col-12">
 									<ul>
-										<li><a href="index.html">Home</a></li>
+										<li>
+										<li class="nav-item">
+											<a class="nav-link text-dark" asp-area="" asp-controller="Boba" asp-action="Index">Boba</a>
+										</li>></li>
 										<li><a href="boba.html">Boba</a></li>
 										<li><a href="aboutus.html">About us</a></li>
 										<li><a href="blog-single.html">Cappy's Life</a></li>
@@ -162,7 +180,12 @@
 							<h2>Legal</h2>
 
 							<ul>
-								<li><a href="term.html">Terms & Conditions</a></li>
+								<li>
+								<li class="nav-item">
+									<a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Term">Terms &
+										Conditions</a>
+								</li>
+								</li>
 
 							</ul>
 
