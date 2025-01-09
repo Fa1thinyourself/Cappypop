@@ -1,11 +1,12 @@
 using dotenv.net;
 using Supabase;
+using static System.Net.WebRequestMethods;
 
 DotEnv.Load();
 var builder = WebApplication.CreateBuilder(args);
 
-var url = Environment.GetEnvironmentVariable("SUPABASE_URL") ?? throw new InvalidOperationException("Environment variable 'SUPABASE_URL' not found");
-var key = Environment.GetEnvironmentVariable("SUPABASE_KEY") ?? throw new InvalidOperationException("Environment variable 'SUPABASE_KEY' not found");
+var url = "https://ikgjbacpuzcnghxcrzwc.supabase.co";
+var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlrZ2piYWNwdXpjbmdoeGNyendjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYyNjA1MzksImV4cCI6MjA1MTgzNjUzOX0.xMQTgFW1v31DEI-pZbYCWF6JoZ-yvtBvFk_fU598nw4";
 var option = new SupabaseOptions
 {
     AutoRefreshToken = true,
