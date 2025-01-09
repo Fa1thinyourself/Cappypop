@@ -1,0 +1,100 @@
+@model CappypopMVC.Controllers.RegisterViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CappyPop Signup</title>
+    <link rel="stylesheet" href="/css/authentication.css" />
+    @* Ensure unobtrusive validation is enabled *@
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.0.0/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<style>
+    body {
+        margin-left: 20px; /* Adjust left margin */
+    }
+
+    .wrapper {
+        margin-left: 20px; /* Adjust wrapper margin */
+        margin-right: 20px; /* Optional: Add right margin for symmetry */
+    }
+
+    /* Additional styling to center the form */
+    .wrapper form {
+        max-width: 400px; /* Set max width for the form */
+        margin: 0 auto; /* Center the form horizontally */
+    }
+</style>
+
+<body>
+
+    <div class="wrapper">
+        <img src="/img/logo.png" alt="CappyPop Logo" width="600" height="170" />
+        <h2>Feast with us</h2>
+        <h2>Enjoy life with us</h2>
+    </div>
+
+    <div class="wrapper">
+        <form asp-action="Register">
+            @Html.AntiForgeryToken()
+
+            <h1>Sign up now</h1>
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="error-messages" style="color: red; margin-bottom: 15px;">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p>@error.ErrorMessage</p>
+                    }
+                </div>
+            }
+
+            <div class="input-field">
+                <input asp-for="DisplayName" class="form-control" placeholder="Full Name" required />
+                <span asp-validation-for="DisplayName" class="text-danger"></span>
+            </div>
+
+            <div class="input-field">
+                <input asp-for="Email" class="form-control" placeholder="Email Address" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="input-field">
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" required />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="input-field">
+                <input type="password" asp-for="Password" class="form-control" placeholder="Password" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="line"></div>
+
+            @* <div class="media-options">
+                <a href="#" class="google-login">
+                    <img src="/img/google.png" alt="Google Logo" class="google-img" />
+                    <span>Continue with Google</span>
+                </a>
+            </div> *@
+
+            <button type="submit">Sign up</button>
+
+            <div class="register">
+                <p>
+                    Already have an account? <a asp-action="Index" asp-controller="Authentication">Login!</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

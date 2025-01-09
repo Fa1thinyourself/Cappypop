@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using CappypopMVC.Models;
 using Supabase;
 using Supabase.Gotrue.Exceptions;
+using CappypopMVC.Models.DatabaseModels;
 
 namespace CappypopMVC.Controllers;
 
@@ -22,21 +23,28 @@ public class AuthenticationController : Controller
 		return View();
 	}
 
+	public IActionResult Register()
+	{
+		return View();
+	}
+
 	// POST: Login
 	// To protect from overposting attacks, enable the specific properties you want to bind to.
 	// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 	[HttpPost]
 	[ValidateAntiForgeryToken]
-	public async Task<IActionResult> Login([Bind("Email,Password")] AuthenticationViewModel users)
+	public async Task<IActionResult> Login([Bind("Email,Password")] LoginViewModel users)
 	{
 		try
 		{
 			var session = await supabase.Auth.SignIn(users.Email, users.Password) ?? throw new Exception("Invalid credentials");
-			if (session.AccessToken == null) {
+			if (session.AccessToken == null)
+			{
 				throw new Exception("Cannot found AccessToken");
 			}
 			HttpContext.Session.SetString("AccessToken", session.AccessToken);
-			if (session.RefreshToken == null) {
+			if (session.RefreshToken == null)
+			{
 				throw new Exception("Cannot found RefreshToken");
 			}
 			HttpContext.Session.SetString("RefreshToken", session.RefreshToken);
@@ -54,6 +62,44 @@ public class AuthenticationController : Controller
 		return View("Index");
 	}
 
+	// POST: Register
+	// To protect from overposting attacks, enable the specific properties you want to bind to.
+	// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	public async Task<IActionResult> Register([Bind("DisplayName,Email,PhoneNumber,Password")] RegisterViewModel newUser)
+	{
+		try
+		{
+			var session = await supabase.Auth.SignUp(newUser.Email, newUser.Password) ?? throw new Exception("User already registered");
+			Users user = new()
+			{
+				Email = newUser.Email,
+				FullName = newUser.DisplayName,
+				PhoneNumber = newUser.PhoneNumber,
+				UserUid = session.User?.Id,
+				RoleId = null,
+			};
+			await supabase.From<Users>().Insert(user);
+			if (session.AccessToken == null)
+			{
+				throw new Exception("Cannot found AccessToken");
+			}
+			HttpContext.Session.SetString("AccessToken", session.AccessToken);
+			if (session.RefreshToken == null)
+			{
+				throw new Exception("Cannot found RefreshToken");
+			}
+			HttpContext.Session.SetString("RefreshToken", session.RefreshToken);
+			return RedirectToAction("Index", "Home");
+		}
+		catch (GotrueException error)
+		{
+			ModelState.AddModelError("Gotrue Auth", error.Message);
+		}
+		return View();
+	}
+
 	[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 	public IActionResult Error()
 	{
@@ -61,8 +107,16 @@ public class AuthenticationController : Controller
 	}
 }
 
-public class AuthenticationViewModel
+public class LoginViewModel
 {
 	public required string Email { get; set; }
+	public required string Password { get; set; }
+}
+
+public class RegisterViewModel
+{
+	public required string DisplayName { get; set; }
+	public required string Email { get; set; }
+	public required string PhoneNumber { get; set; }
 	public required string Password { get; set; }
 }
