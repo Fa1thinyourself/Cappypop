@@ -78,20 +78,20 @@ public class AuthenticationController : Controller
 				FullName = newUser.DisplayName,
 				PhoneNumber = newUser.PhoneNumber,
 				UserUid = session.User?.Id,
-				RoleId = null,
+				RoleId = 1,
 			};
 			await supabase.From<Users>().Insert(user);
-			if (session.AccessToken == null)
-			{
-				throw new Exception("Cannot found AccessToken");
-			}
-			HttpContext.Session.SetString("AccessToken", session.AccessToken);
-			if (session.RefreshToken == null)
-			{
-				throw new Exception("Cannot found RefreshToken");
-			}
-			HttpContext.Session.SetString("RefreshToken", session.RefreshToken);
-			return RedirectToAction("Index", "Home");
+			//if (session.AccessToken == null)
+			//{
+			//	throw new Exception("Cannot found AccessToken");
+			//}
+			//HttpContext.Session.SetString("AccessToken", session.AccessToken);
+			//if (session.RefreshToken == null)
+			//{
+			//	throw new Exception("Cannot found RefreshToken");
+			//}
+			//HttpContext.Session.SetString("RefreshToken", session.RefreshToken);
+			return RedirectToAction("Index");
 		}
 		catch (GotrueException error)
 		{
