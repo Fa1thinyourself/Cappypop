@@ -2,7 +2,7 @@
 namespace CappypopMVC.Helper
 
 {
-    public static class SessionExtensionscs
+    public static class SessionExtensions
     {
         public static void Set<T>(this ISession session, string key, T value)
         {
