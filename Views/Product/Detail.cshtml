@@ -16,7 +16,7 @@
 
 			<div class="col-lg-6">
 				<div class="product-right">
-					<div class="product-info">
+					<form asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.productid" class="product-info">
 
 						<div class="info-detail">
 							<p>@Html.DisplayFor(model=> model.Description)</p>
@@ -30,7 +30,7 @@
 								<div class="col-lg-6">
 									<div class="single-select">
 										<h5>Size:</h5>
-										<select class="nice-select cart-form-select">
+										<select name="size" class="nice-select cart-form-select">
 											<option value="1">S</option>
 											<option value="2">M</option>
 											<option value="3">L</option>
@@ -42,7 +42,7 @@
 									<div class="single-select">
 										<h5>Quantity:</h5>
 
-										<button class="btn px-2"
+										<button type="button" class="btn px-2"
 												onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
 											<i class="icofont-minus"></i>
 										</button>
@@ -50,7 +50,7 @@
 										<input min="0" name="quantity" value="2" type="number"
 											   class="nice-select cart-form-select" style="width: 80px;" />
 
-										<button class="btn px-2"
+										<button type="button" class="btn px-2"
 												onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
 											<i class="icofont-plus"></i>
 										</button>
@@ -62,10 +62,10 @@
 								<div class="col-lg-6">
 									<div class="single-select">
 										<h5>Sugar:</h5>
-										<select class="nice-select cart-form-select">
-											<option value="1">10%</option>
-											<option value="2">20%</option>
-											<option value="3">50%</option>
+										<select name="sugar" class="nice-select cart-form-select">
+											<option value="10">10%</option>
+											<option value="20">20%</option>
+											<option value="50">50%</option>
 										</select>
 									</div>
 								</div>
@@ -73,10 +73,10 @@
 								<div class="col-lg-6">
 									<div class="single-select">
 										<h5>Ice:</h5>
-										<select class="nice-select cart-form-select">
-											<option value="1">10%</option>
-											<option value="2">20%</option>
-											<option value="3">50%</option>
+										<select name="ice" class="nice-select cart-form-select">
+											<option value="10">10%</option>
+											<option value="20">20%</option>
+											<option value="50">50%</option>
 										</select>
 									</div>
 								</div>
@@ -84,12 +84,11 @@
 								<div class="col-lg-12">
 									<div class="single-select">
 										<h5>Topping:</h5>
-										<select class="nice-select cart-form-select">
-											<option value="1">Black pearls</option>
-											<option value="2">Grass Jelly</option>
-											<option value="3">Egg Pudding</option>
-											<option value="4">Cheese Foam</option>
-
+										<select name="topping" class="nice-select cart-form-select">
+											<option value="Black pearls">Black pearls</option>
+											<option value="Grass Jelly">Grass Jelly</option>
+											<option value="Egg Pudding">Egg Pudding</option>
+											<option value="Cheese Foam">Cheese Foam</option>
 										</select>
 									</div>
 								</div>
@@ -98,11 +97,11 @@
 
 						</div>
 
-						<div class="button">
-							<a href="user-mycart.html" class="btn">Add to Cart</a>
-						</div>
+						<button type="submit" class="btn">
+							Add to Cart
+						</button>
 
-					</div>
+					</form>
 				</div>
 			</div>
 

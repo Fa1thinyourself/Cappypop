@@ -1,0 +1,247 @@
+@model IEnumerable<CappypopMVC.Models.Viewmodel.CartItem>
+@{
+	ViewData["Title"] = "Details";
+}
+
+<!-- Start User Profile -->
+<section class="user-account section">
+	<div class="container">
+		<div class="row">
+
+			<!-- Start Sidemenu -->
+			<div class="col-lg-3">
+
+				<div class="user-sidebar">
+
+					<ul class="nav-links">
+
+						<li>
+							<div class="profile-details">
+								<div class="profile-content">
+									<img src="img/admin-avatar.png" alt="profileImg">
+								</div>
+								<div class="name-job">
+									<div class="profile_name">User's Account</div>
+									<div class="job">Group 9</div>
+								</div>
+							</div>
+						</li>
+
+						<li>
+							<a href="index.html">
+								<i class="icofont-ui-home"></i>
+								<span class="link_name">Back to Home</span>
+							</a>
+
+						</li>
+
+						<li>
+							<a href="user-profile.html">
+								<i class="icofont-user-suited"></i>
+								<span class="link_name">My Profile</span>
+							</a>
+						</li>
+
+						<li>
+							<div class="iocn-link">
+								<a href="user-mycart.html">
+									<i class="icofont-coconut-water"></i>
+									<span class="link_name">My Order</span>
+								</a>
+								<i class="icofont-rounded-down arrow"></i>
+							</div>
+							<ul class="sub-menu">
+								<li><a class="link_name" href="user-mycart.html">My Order</a></li>
+								<li><a href="user-mycart.html">My Cart</a></li>
+								<li><a href="user-checkout.html">Checkout</a></li>
+								<li><a href="use-order-history.html">Order History</a></li>
+							</ul>
+						</li>
+
+						<!--<li>
+									<a href="">
+											<i class="icofont-wallet"></i>
+										<span class="link_name">Payment Method</span>
+									</a>
+							</li>-->
+
+						<li>
+							<a href="user-delivery-address.html">
+								<i class="icofont-location-pin"></i>
+								<span class="link_name">Delivery Address</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="user-notification.html">
+								<i class="icofont-notification"></i>
+								<span class="link_name">Notifications</span>
+							</a>
+						</li>
+
+						<div class="button">
+							<a href="index.html" class="btn"> Sign out <i class="icofont-logout"></i></a>
+						</div>
+
+
+					</ul>
+				</div>
+			</div>
+			<!-- End Sidemenu -->
+
+
+			<!-- Start Main Content -->
+			<div class="col-lg-9">
+				<section class="home-section">
+
+					<div class="home-title">
+						<h1>My Cart</h1>
+					</div>
+
+					<!-- Start Cart Listing -->
+
+					<section class="cart-list">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-12">
+
+									<!-- Start Card Table -->
+
+									<div class="table-responsive">
+										<table class="table">
+
+											<thead>
+												<tr>
+													<th scope="col">Name</th>
+													<th scope="col">Price</th>
+													<th scope="col">Quantity</th>
+													<th scope="col">Total</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<!-- Start Single Cart Listing -->
+												@foreach (var cartItem in Model)
+												{
+
+													<tr class="single-cart-list">
+
+														<th scope="row">
+															<div class="d-flex align-items-center">
+																<img src="img/boba-img/boba.png">
+																<div class="cartlist-content">
+
+																	<h5>@cartItem.Name</h5>
+
+																	<p>Size: @cartItem.Size</p>
+																	<p><span>Topping: @cartItem.Topping.</span></p>
+
+
+																	<a asp-action="DeleteCartItem" asp-route-id="@cartItem.Id" class="btn"><i
+																			class="icofont-ui-delete"></i></a>
+
+
+																</div>
+															</div>
+														</th>
+
+														<td class="align-middle">
+															<p>@cartItem.Price đ</p>
+														</td>
+
+
+														<td class="align-middle">
+
+															<div class="d-flex flex-row">
+																<button class="btn px-2"
+																	onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+																	<i class="icofont-minus"></i>
+																</button>
+
+																<input min="0" name="quantity" value="@cartItem.Quantity" type="number"
+																	class="nice-select cart-form-select" style="width: 80px;" />
+
+																<button class="btn px-2"
+																	onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+																	<i class="icofont-plus"></i>
+																</button>
+															</div>
+														</td>
+
+														<td class="align-middle">
+															<p>@cartItem.Total đ</p>
+														</td>
+
+													</tr>
+												}
+												<!-- End Single Cart Listing -->
+											</tbody>
+										</table>
+									</div>
+
+									<!-- End Card Table -->
+
+
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- End Cart Listing -->
+
+					<!-- Start Bill Information -->
+
+					<section class="bill-infor">
+
+
+						<div class="bill-left">
+							<div class="button">
+								<a href="boba.html" class="btn"> <i class="icofont-plus-circle"></i> Add more Boba</a>
+							</div>
+
+						</div>
+
+						<div class="bill-right">
+
+							<div class="single-bill-infor">
+
+								<h6>Subtotal</h6>
+								<p> 50,000đ</p>
+
+							</div>
+
+							<div class="single-bill-infor">
+
+								<h6>Delivery</h6>
+								<p>3.000đ</p>
+
+							</div>
+
+							<div class="bill-total">
+
+								<h6>Total</h6>
+								<p>300.000đ</p>
+
+							</div>
+
+							<div class="bill-button">
+								<a href="user-checkout.html" class="btn">Check out</a>
+								<button class="btn primary">Delete Car</button>
+							</div>
+
+						</div>
+
+
+					</section>
+
+					<!-- End Bill Information -->
+
+
+				</section>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<!-- End User Profile -->
