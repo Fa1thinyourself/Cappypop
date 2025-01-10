@@ -20,17 +20,6 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var response = await supabase.From<Users>().Get();
-        List<Users> users = response.Models;
-
-        users.ForEach(user =>
-        {
-            PropertyInfo[] p = user.GetType().GetProperties();
-            foreach (PropertyInfo item in p)
-            {
-                Console.WriteLine(item.Name + ": " + item.GetValue(user));
-            };
-        });
         return View();
     }
 
