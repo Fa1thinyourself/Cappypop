@@ -23,4 +23,7 @@ public class Products : BaseModel
     public int? Categoryid { get; set; }
     [Column("createat")]
     public DateTime? CreatedAt { get; set; }
+
+    [Column ("URL link")]
+    public String? URLlink  { get; set; }
 }
