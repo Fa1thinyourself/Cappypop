@@ -9,6 +9,7 @@ public class Users : BaseModel
 {
     [PrimaryKey("id")]
     public int Id { get; set; }
+
     [Column("email")]
     public string? Email { get; set; }
     [Column("password_hash")]
@@ -22,7 +23,7 @@ public class Users : BaseModel
     [Column("updated_at")]
     public DateTime? UpdatedAt { get; set; }
     [Column("roles_id")]
-    public string? RoleId { get; set; }
+    public int? RoleId { get; set; }
     [Column("user_uid")]
     public string? UserUid { get; set; }
-}
+} 
