@@ -19,6 +19,10 @@ public class AdminController : Controller
         }
     public IActionResult Index()
     {
-        return View();
+        var user = supabase.From<Users>().Where(u => u.UserUid == supabase.Auth.CurrentUser.Id).Get();
+        if (user == null){
+            return NotFound();
+        }
+        return View(user);
     }
 }
