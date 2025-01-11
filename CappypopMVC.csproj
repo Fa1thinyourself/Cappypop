@@ -5,6 +5,23 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Home\NewFolder\**" />
+    <Compile Remove="Views\NewFolder\**" />
+    <Content Remove="Views\Home\NewFolder\**" />
+    <Content Remove="Views\NewFolder\**" />
+    <EmbeddedResource Remove="Views\Home\NewFolder\**" />
+    <EmbeddedResource Remove="Views\NewFolder\**" />
+    <None Remove="Views\Home\NewFolder\**" />
+    <None Remove="Views\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\Boba.cshtml" />
+    <Content Remove="Views\Home\Privacy.cshtml" />
+    <Content Remove="Views\User\Cart.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Supabase" Version="1.1.1" />
     <PackageReference Include="dotenv.net" Version="3.2.1" />

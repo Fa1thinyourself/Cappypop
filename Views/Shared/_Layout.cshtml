@@ -14,7 +14,7 @@
 	<title>CappyPop - Boba</title>
 
 	<!-- Favicon -->
-	<link rel="icon" href="img/favicon.png">
+	<link rel="icon" href="/img/favicon.png">
 
 	<!-- Google Fonts -->
 	<link
@@ -76,18 +76,24 @@
 										<li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 										</li>
 
-										<li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Boba">Boba</a></li>
+										<li> <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Boba</a></li>
 
 										<li>
 											<a href="#">Cappy's Life<i class="icofont-rounded-down"></i></a>
 											<ul class="dropdown">
-												<li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Newest
+												<li>
+													<a class="nav-link text-dark" asp-area="" asp-controller="CappyLife" asp-action="Index">
+														Newest
 														update</a></li>
-												<li> <a class="nav-link text-dark" asp-area="" asp-controller="Home"
-														asp-action="Index">recipes</a></li>
-												<li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Blogs &
+												<li> <a class="nav-link text-dark" asp-area="" asp-controller="CappyLife" asp-action="Index">recipes</a></li>
+
+												<li>
+													<a class="nav-link text-dark" asp-area="" asp-controller="CappyLife" asp-action="Index">
+														Blogs &
 														Articles</a></li>
-												<li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Special
+												<li>
+													<a class="nav-link text-dark" asp-area="" asp-controller="CappyLife" asp-action="Index">
+														Special
 														events & Holidays</a></li>
 											</ul>
 										</li>
@@ -119,11 +125,12 @@
 										</div>
 
 										<div class="get-quote">
-											<a href="admin-dashbroad.html" class="btn"><i class="icofont-user-alt-5"></i></a>
+											<a asp-area="" asp-controller="User" asp-action="Index" class="btn"><i class="icofont-user-alt-5"></i>
+											</a>
 										</div>
 
 										<div class="get-quote">
-											<a href="user-mycart.html" class="btn"><i class="icofont-shopping-cart"></i></a>
+											<a asp-area="" asp-controller="Cart" asp-action="Index" class="btn"><i class="icofont-shopping-cart"></i></a>
 										</div>
 									</ul>
 								</nav>
